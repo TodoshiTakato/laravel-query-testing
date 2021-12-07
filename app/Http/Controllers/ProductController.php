@@ -12,9 +12,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+//        $data = \App\Product::query()->select('id')->get();
+        $data = \App\Product::all()->toArray()[0]['id'];
+        print_r($data);
     }
 
     /**

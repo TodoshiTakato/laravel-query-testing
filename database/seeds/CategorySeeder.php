@@ -12,10 +12,11 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Category::class, 27)->create()->each(
-            function ($category) {
-                factory(App\Product::class, 37)->create(['category_id'=>$category->id]);
-            }
-        );
+        factory(\App\Category::class, 40)->create();
+//        factory(\App\Category::class, 27)->create()->each(
+//            function ($category) {
+//                factory(App\Product::class, 37)->create(['category_id'=>$category->id]);
+//            }
+//        );
     }
 }

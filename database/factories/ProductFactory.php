@@ -11,7 +11,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
         'price' => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100000),
         'status' => $faker->randomElement($array = array (0, 1)),
-//        'category_id' => factory(App\Category::class),
+        'category_id' => App\Category::all()->pluck('id')->random(),
         'created_at' => $faker->dateTimeBetween('-4 months', 'now', null),
         'updated_at' => $faker->dateTimeBetween('-4 months','now', null),
     ];

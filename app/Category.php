@@ -15,10 +15,10 @@ class Category extends Model
     }
 
     public function parent_category() {
-        return $this->hasOne('App\Category');
+        return $this->hasOne('App\Category', 'parent_id');
     }
     public function child_category() {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Category', 'parent_id');
     }
 
     public function products() {

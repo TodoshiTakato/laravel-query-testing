@@ -24,7 +24,7 @@ class CreateCategoriesTable extends Migration
             });
         }
         Schema::table('categories', function (Blueprint $table) {
-            $table->foreignId('category_id')  // parent_id
+            $table->foreignId('parent_id')  // parent_id
                 ->after('id')
                 ->nullable()
                 ->constrained('categories')
@@ -42,7 +42,7 @@ class CreateCategoriesTable extends Migration
     public function down()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->dropForeign(['category_id']);  // parent_id
+            $table->dropForeign(['parent_id']);  // parent_id
         });
         Schema::dropIfExists('categories');
     }

@@ -27,18 +27,27 @@ class UserSeeder extends Seeder
 //                );
 //            });
 
-
-
-        factory(User::class, 500)
+        factory(User::class, 5)
             ->create()
             ->each(
             function ($user) {
-                factory(App\Order::class, 10)
-                    ->create(['user_id'=>$user->id])
-                    ->each(
+                factory(App\Order::class, 2)
+                ->create(['user_id'=>$user->id])
+                ->each(
                     function ($order) use ($user) {
-                        factory(App\OrderItem::class, 10)
-                            ->create(['order_id'=>$order->id]);
+                        factory(App\OrderItem::class, 3)
+                        ->create(['order_id'=>$order->id])
+                        ->each(
+                            function ($order_item) use ($user, $order) {
+                                factory(App\Product::class)
+                                    ->make()
+                                    ->each(
+                                        function ($product) use ($user, $order, $order_item) {
+                                            $order_item->product_id = $product->id;
+                                        }
+                                    );
+                            }
+                        );
                     }
                 );
             }
